@@ -223,6 +223,13 @@ int escape_sbx_demo3(void) {
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    {
+        char diagnostic[128];
+        snprintf(diagnostic, sizeof(diagnostic),
+                 "[breadcrumb] ViewController viewDidLoad pid=%d\n", getpid());
+        cyanide_diag_append(diagnostic);
+    }
+
     if ([[NSUserDefaults standardUserDefaults] boolForKey:kSettingsAutoRunKexploit]) {
         settings_run_actions();
     }
